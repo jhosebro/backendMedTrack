@@ -38,6 +38,7 @@ const authController = require("./controllers/authController");
 
 app.post("/api/auth/login", authController.login);
 app.post("/api/auth/register", authController.registerUser);
+app.get("/", console.log("hola"));
 
 
 app.listen(port, () => {
