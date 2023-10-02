@@ -1,10 +1,15 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
+const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 3000;
+/*const corsOptions = {
+  origin: "https://localhost:5173"
+}*/
 
-app.use(express.json());
+app.use(express.json(), cors());
+
 
 const secretKey = crypto.randomBytes(32).toString("hex");
 
