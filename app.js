@@ -38,7 +38,17 @@ const authController = require("./controllers/authController");
 
 app.post("/api/auth/login", authController.login);
 app.post("/api/auth/register", authController.registerUser);
-app.get("/", console.log("hola"));
+app.get("/", (req, res) => {
+  const htmlResponse = `
+  <html>
+    <body>
+      <h1>API REST</h1>
+      <h2>MedTrack</h2>
+    </body>
+  </html>
+  `;
+  res.send(htmlResponse);
+});
 
 
 app.listen(port, () => {
