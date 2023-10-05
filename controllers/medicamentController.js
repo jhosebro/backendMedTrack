@@ -65,8 +65,34 @@ const updateMedicament = (req, res) => {
 };
 
 
+const deleteMedicament = (req, res) => {
+    const { idMedicamento } = req.params;
+
+    const query = "DELETE FROM Medicamento WHERE idMedicamento = ?"
+    const values = [idMedicamento];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error("Error al eliminar el medicamento", err);
+            res.status(500).json({ error: "Error al eliminar el medicamento" });
+            return;
+        }
+
+        if (result.affectedRows === 0) {
+            res.status(404).json({ error: "El medicamento no se encontró" });
+            return;
+        }
+
+        res.json({ 
+            tipo: "success",
+            mensaje: "Medicamento eliminado exitosamente" });
+    });
+};
+
+
 module.exports = {
     getMedicaments,
     createMedicament,
     updateMedicament,
+    deleteMedicament
 }

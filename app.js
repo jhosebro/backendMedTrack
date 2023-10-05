@@ -7,7 +7,6 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json(), cors());
 
-
 const secretKey = crypto.randomBytes(32).toString("hex");
 
 function authenticationUser(req, res, next) {
@@ -36,9 +35,12 @@ const medicamentController = require("./controllers/medicamentController");
 
 app.post("/api/auth/login", authController.login);
 app.post("/api/auth/register", authController.registerUser);
+
 app.get("/api/medicaments", medicamentController.getMedicaments);
 app.post("/api/medicaments", medicamentController.createMedicament);
 app.put("/api/medicaments", medicamentController.updateMedicament);
+app.delete("/api/medicaments", medicamentController.deleteMedicament);
+
 app.get("/", (req, res) => {
   const htmlResponse = `
   <html>
@@ -50,7 +52,6 @@ app.get("/", (req, res) => {
   `;
   res.send(htmlResponse);
 });
-
 
 app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
