@@ -12,7 +12,7 @@ const login = (req, res) => {
     if (err) {
       console.error("Error al buscar el usuario:", err);
       res.status(500).json({ error: "Error al buscar el usuario" });
-      return; // Importante agregar return para salir de la función
+      return;
     }
 
     if (result.length === 0) {
