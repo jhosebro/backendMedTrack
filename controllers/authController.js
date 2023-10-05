@@ -1,4 +1,4 @@
-import db from '../database/connection.js';
+const db = require('../database/connection.js')
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 

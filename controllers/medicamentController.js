@@ -1,4 +1,4 @@
-import db from '../database/connection.js'
+const db = require('../database/connection.js')
 
 const getMedicaments = (req, res) => {
     
@@ -16,9 +16,9 @@ const getMedicaments = (req, res) => {
             return;
         }
 
-        res.json({mensaje: "Medicamentos encontrados"});
-
-        return result;
+        
+        res.json(result)
+        
     })
 }
 
