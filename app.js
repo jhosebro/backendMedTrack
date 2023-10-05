@@ -32,6 +32,7 @@ function authenticationUser(req, res, next) {
 
 const authController = require("./controllers/authController");
 const medicamentController = require("./controllers/medicamentController");
+const treatmentController = require("./controllers/treatmentController");
 
 app.post("/api/auth/login", authController.login);
 app.post("/api/auth/register", authController.registerUser);
@@ -40,6 +41,11 @@ app.get("/api/medicaments", medicamentController.getMedicaments);
 app.post("/api/medicaments", medicamentController.createMedicament);
 app.put("/api/medicaments", medicamentController.updateMedicament);
 app.delete("/api/medicaments", medicamentController.deleteMedicament);
+
+app.get("/api/treatments", treatmentController.getTreatment);
+app.post("/api/treatments", treatmentController.createTreatment);
+app.put("/api/treatments", treatmentController.updateTreatment);
+app.delete("/api/treatments", treatmentController.deleteTreatment);
 
 app.get("/", (req, res) => {
   const htmlResponse = `
