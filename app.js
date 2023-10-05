@@ -37,6 +37,8 @@ const medicamentController = require("./controllers/medicamentController");
 app.post("/api/auth/login", authController.login);
 app.post("/api/auth/register", authController.registerUser);
 app.get("/api/medicaments", medicamentController.getMedicaments);
+app.post("/api/medicaments", medicamentController.createMedicament);
+app.put("/api/medicaments", medicamentController.updateMedicament);
 app.get("/", (req, res) => {
   const htmlResponse = `
   <html>

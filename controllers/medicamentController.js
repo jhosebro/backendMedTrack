@@ -22,6 +22,47 @@ const getMedicaments = (req, res) => {
     })
 }
 
+const createMedicament = (req, res) => {
+    const { idMedicamento, Nombre, Tipo, unidadMedida, Cantidad } = req.body;
+
+    const query = "INSERT INTO Medicamento (idMedicamento, Nombre, Tipo, unidadMedida, Cantidad) VALUES (?, ?, ?, ?, ?)";
+    const values = [idMedicamento, Nombre, Tipo, unidadMedida, Cantidad];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error("Error al crear el medicamento", err);
+            res.status(500).json({ error: "Error al crear el medicamento" });
+            return;
+        }
+        res.json({ mensaje: "Medicamento creado exitosamente" });
+    });
+};
+
+const updateMedicament = (req, res) => {
+    const { idMedicamento, Nombre, Tipo, unidadMedida, Cantidad } = req.body;
+
+    const query = "UPDATE Medicamento SET Nombre = ?, Tipo = ?, unidadMedida = ?, Cantidad = ? WHERE idMedicamento = ?";
+    const values = [Nombre, Tipo, unidadMedida, Cantidad, idMedicamento];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error("Error al actualizar el medicamento", err);
+            res.status(500).json({ error: "Error al actualizar el medicamento" });
+            return;
+        }
+
+        if (result.affectedRows === 0) {
+            res.status(404).json({ error: "El medicamento no se encontró" });
+            return;
+        }
+
+        res.json({ mensaje: "Medicamento actualizado exitosamente" });
+    });
+};
+
+
 module.exports = {
-    getMedicaments
+    getMedicaments,
+    createMedicament,
+    updateMedicament,
 }
