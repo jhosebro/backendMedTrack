@@ -66,7 +66,7 @@ const updateMedicament = (req, res) => {
 
 
 const deleteMedicament = (req, res) => {
-    const { idMedicamento } = req.params;
+    const { idMedicamento } = req.body;
 
     const query = "DELETE FROM Medicamento WHERE idMedicamento = ?"
     const values = [idMedicamento];
