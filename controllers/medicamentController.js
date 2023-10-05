@@ -34,7 +34,9 @@ const createMedicament = (req, res) => {
             res.status(500).json({ error: "Error al crear el medicamento" });
             return;
         }
-        res.json({ mensaje: "Medicamento creado exitosamente" });
+        res.json({ 
+            tipo: "success",
+            mensaje: "Medicamento creado exitosamente" });
     });
 };
 
@@ -56,7 +58,9 @@ const updateMedicament = (req, res) => {
             return;
         }
 
-        res.json({ mensaje: "Medicamento actualizado exitosamente" });
+        res.json({ 
+            tipo: "success",
+            mensaje: "Medicamento actualizado exitosamente" });
     });
 };
 
