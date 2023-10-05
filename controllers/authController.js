@@ -1,13 +1,7 @@
-const mysql = require("mysql2");
+import db from '../database/connection.js';
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-const db = mysql.createConnection({
-  host: "db4free.net",
-  user: "jhosebro",
-  password: "Gogeta123,",
-  database: "medtrack",
-});
 
 const login = (req, res) => {
   const { username, password } = req.body;

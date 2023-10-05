@@ -4,9 +4,6 @@ const crypto = require("crypto");
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 3000;
-/*const corsOptions = {
-  origin: "https://localhost:5173"
-}*/
 
 app.use(express.json(), cors());
 
@@ -35,9 +32,11 @@ function authenticationUser(req, res, next) {
 }
 
 const authController = require("./controllers/authController");
+const medicamentController = require("./controllers/medicamentController");
 
 app.post("/api/auth/login", authController.login);
 app.post("/api/auth/register", authController.registerUser);
+app.get("/api/medicaments", medicamentController.getMedicaments);
 app.get("/", (req, res) => {
   const htmlResponse = `
   <html>
