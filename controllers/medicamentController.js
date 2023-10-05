@@ -17,6 +17,8 @@ const getMedicaments = (req, res) => {
         }
 
         res.json({mensaje: "Medicamentos encontrados"});
+
+        return result;
     })
 }
 
