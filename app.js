@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const cors = require("cors");
 const app = express();
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const port = process.env.PORT || 3000;
 
 app.use(express.json(), cors());
@@ -62,3 +63,14 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
 });
+
+
+module.exports = function(app) {
+  app.use(
+    '/api',
+    createProxyMiddleware({
+      target: 'http://backend-med-track.vercel.app',
+      changeOrigin: true,
+    })
+  );
+};
